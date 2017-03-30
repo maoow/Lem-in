@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/18 15:56:29 by cbinet            #+#    #+#             */
-/*   Updated: 2017/03/28 13:54:02 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/03/30 17:22:14 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,21 +214,48 @@ static void		ft_dispmap(t_lemenv *env)
 		i++;
 	}
 }
-int				main()
+
+static void		initenv(t_lemenv *env)
+{
+	env->roomsnb = 0;
+	env->end = NULL;
+	env->start = NULL;
+	env->rooms = NULL;
+	env->endreached = false;
+	env->colors = false;
+	env->dispmap = false;
+	env->total = false;
+	env->moves = 0;
+
+}
+
+static void		ft_parse(t_lemenv *env, char *str)
+{
+	if (ft_strchr(str, 't'))
+		env->total = true;
+	if (ft_strchr(str, 'm'))
+		env->dispmap= true;
+	if (ft_strchr(str, 'c'))
+		env->colors = true;
+
+}
+
+int				main(int ac, char **av)
 {
 	t_lemenv		env;
 
-	env.roomsnb = 0;
-	env.end = NULL;
-	env.start = NULL;
-	env.rooms = NULL;
+	initenv(&env);
 	ft_getlemmap(&env);
-	env.endreached = false;
-	env.moves = 0;
 	if (!env.end)
 		ft_error("No ", "end.");
+	if (ac == 2)
+		ft_parse(&env, av[1]);
+	if (env.start)
 	env.start->ants = env.ants;
-	ft_dispmap(&env);
+	else
+		ft_error("no start", "");
+	if (env.dispmap)
+		ft_dispmap(&env);
 	if (env.ants && env.start != env.end)
 		ft_solvelemmap(&env);
 }

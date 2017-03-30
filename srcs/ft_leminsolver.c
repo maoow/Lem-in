@@ -6,11 +6,23 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/19 12:50:05 by cbinet            #+#    #+#             */
-/*   Updated: 2017/03/28 15:17:45 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/03/30 17:22:49 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Lem-in.h"
+
+char	*g_colors[9] = {
+	"{black}",
+	"{red}",
+	"{green}",
+	"{yellow}",
+	"{blue}",
+	"{pink}",
+	"{cyan}",
+	"{grey}",
+	"{eoc}"
+};
 
 bool		ft_setdist(t_lemenv *env, t_lroom *tmp, size_t dist)
 {
@@ -76,7 +88,7 @@ bool		ft_moveant(t_lemenv *env, t_ant *ant)
 		{
 			if (ant->room->neighbors[i]->distance <= distance &&
 			(ant->room->neighbors[i]->ants == 0 || ant->room->neighbors[i] == env->end)
-			&& ant->room->distance >= ant->room->neighbors[i]->distance)
+			&& ant->room->distance >= (ant->room->neighbors[i]->distance))
 			{
 				distance = ant->room->neighbors[i]->distance;
 				tmp = ant->room->neighbors[i];
@@ -85,7 +97,10 @@ bool		ft_moveant(t_lemenv *env, t_ant *ant)
 		}
 		if (tmp)
 		{
+			if (env->colors)
+			ft_printf(g_colors[ant->ant % 9]);
 			ft_printf("L%d_%s ", ant->ant, tmp->name); 
+			ft_printf("{eoc}");
 			ant->room->ants--;
 			ant->room = tmp;
 			tmp->ants++;
@@ -106,7 +121,7 @@ void		ft_solvelemmap(t_lemenv *env)
 	env->end->distance = 0;
 	ft_setdist(env, tmp, 0);
 	if (!env->endreached)
-		ft_error("","");
+		ft_error("no path","");
 	ft_antspawn(env);
 		moved = true;
 	while (moved)
@@ -126,5 +141,6 @@ void		ft_solvelemmap(t_lemenv *env)
 		}
 
 	}
+	if (env->total)
 	ft_printf("took %d moves\n", env->moves);
 }

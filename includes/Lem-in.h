@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/15 16:47:32 by cbinet            #+#    #+#             */
-/*   Updated: 2017/03/28 13:53:45 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/03/30 17:16:43 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,9 @@ typedef struct		s_ant
 }					t_ant;
 typedef struct		s_lemenv
 {
+	bool			colors;
+	bool			total;
+	bool			dispmap;
 	size_t			moves;
 	size_t			ants;
 	size_t			roomsnb;
