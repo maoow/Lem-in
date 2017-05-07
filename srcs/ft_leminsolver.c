@@ -6,23 +6,11 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/19 12:50:05 by cbinet            #+#    #+#             */
-/*   Updated: 2017/03/30 17:22:49 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/04/02 12:04:26 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Lem-in.h"
-
-char	*g_colors[9] = {
-	"{black}",
-	"{red}",
-	"{green}",
-	"{yellow}",
-	"{blue}",
-	"{pink}",
-	"{cyan}",
-	"{grey}",
-	"{eoc}"
-};
 
 bool		ft_setdist(t_lemenv *env, t_lroom *tmp, size_t dist)
 {
@@ -42,7 +30,7 @@ bool		ft_setdist(t_lemenv *env, t_lroom *tmp, size_t dist)
 		if ((tmp->neighbors[i]->distance == 0 && tmp->neighbors[i] != env->end))
 		{
 			tmp->neighbors[i]->distance = dist;
-			if(ft_setdist(env, tmp->neighbors[i], dist))
+			if (ft_setdist(env, tmp->neighbors[i], dist))
 				usefull = true;
 		}
 		i++;
@@ -52,78 +40,62 @@ bool		ft_setdist(t_lemenv *env, t_lroom *tmp, size_t dist)
 	return (usefull);
 }
 
-void		ft_antspawn(t_lemenv *env)
-{
-	t_ant	*tmp;
-	size_t	ants;
-
-	env->antity = (t_ant *)malloc(sizeof(t_ant));
-	tmp = env->antity;
-	tmp->ant = 1;
-	tmp->room = env->start;
-	ants = 1;
-	while (ants < env->ants)
-	{
-		tmp->next = (t_ant *)malloc(sizeof(t_ant));
-		tmp = tmp->next;
-		tmp->room = env->start;
-		tmp->ant = ants + 1;
-		ants++;
-	}
-	tmp->next = NULL;
-}
-
-bool		ft_moveant(t_lemenv *env, t_ant *ant)
+t_lroom		*ft_checkneighboors(t_lemenv *env, t_ant *ant)
 {
 	size_t		i;
 	size_t		distance;
 	t_lroom		*tmp;
 
+	tmp = NULL;
+	distance = INT_MAX;
+	i = 0;
+	while (i < ant->room->neighborsnb)
+	{
+		if (ant->room->neighbors[i]->distance <= distance &&
+				(ant->room->neighbors[i]->ants == 0 || ant->room->neighbors[i]
+				== env->end)
+				&& ant->room->distance >= (ant->room->neighbors[i]->distance))
+		{
+			distance = ant->room->neighbors[i]->distance;
+			tmp = ant->room->neighbors[i];
+		}
+		i++;
+	}
+	return (tmp);
+}
+
+bool		ft_moveant(t_lemenv *env, t_ant *ant)
+{
+	t_lroom		*tmp;
+
 	if (ant->room != env->end)
 	{
-		tmp = NULL;
-		distance = INT_MAX;
-		i = 0;
-		while (i < ant->room->neighborsnb)
-		{
-			if (ant->room->neighbors[i]->distance <= distance &&
-			(ant->room->neighbors[i]->ants == 0 || ant->room->neighbors[i] == env->end)
-			&& ant->room->distance >= (ant->room->neighbors[i]->distance))
-			{
-				distance = ant->room->neighbors[i]->distance;
-				tmp = ant->room->neighbors[i];
-			}
-			i++;
-		}
+		tmp = ft_checkneighboors(env, ant);
 		if (tmp)
 		{
-			if (env->colors)
-			ft_printf(g_colors[ant->ant % 9]);
-			ft_printf("L%d_%s ", ant->ant, tmp->name); 
-			ft_printf("{eoc}");
+			ft_dispmove(env, tmp, ant);
 			ant->room->ants--;
 			ant->room = tmp;
 			tmp->ants++;
+			if (env->regdispmap &&
+					(env->follow == 0 || env->follow == ant->ant))
+				ft_dispmap(env, ant);
 			return (true);
 		}
+		else if (env->follow == ant->ant || env->followall)
+			ft_printf("the ant number {cyan}%3lu{eoc}  {yellow}wait{eoc} in \
+room {red}%5s{eoc}\n", ant->ant, ant->room->name);
 	}
 	return (false);
 }
 
-void		ft_solvelemmap(t_lemenv *env)
+void		ft_domoves(t_lemenv *env)
 {
-	t_lroom		*tmp;
-	t_ant		*anttmp;
 	bool		moved;
+	t_ant		*anttmp;
 
-	tmp = env->end;
-	env->start->distance = INT_MAX;
-	env->end->distance = 0;
-	ft_setdist(env, tmp, 0);
-	if (!env->endreached)
-		ft_error("no path","");
 	ft_antspawn(env);
-		moved = true;
+	moved = true;
 	while (moved)
 	{
 		moved = false;
@@ -134,13 +106,24 @@ void		ft_solvelemmap(t_lemenv *env)
 				moved = true;
 			anttmp = anttmp->next;
 		}
+		if (moved && env->follow == 0)
+			ft_printf("\n");
 		if (moved)
-		{
 			env->moves++;
-		ft_printf("\n");
-		}
-
 	}
+}
+
+void		ft_solvelemmap(t_lemenv *env)
+{
+	t_lroom		*tmp;
+
+	tmp = env->end;
+	env->start->distance = INT_MAX;
+	env->end->distance = 0;
+	ft_setdist(env, tmp, 0);
+	if (!env->endreached)
+		ft_error("no path", "");
+	ft_domoves(env);
 	if (env->total)
-	ft_printf("took %d moves\n", env->moves);
+		ft_printf("\ntook {green}%d{eoc} steps\n", env->moves);
 }

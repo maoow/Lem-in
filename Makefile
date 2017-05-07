@@ -6,7 +6,7 @@
 #    By: cbinet <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/18 16:00:58 by cbinet            #+#    #+#              #
-#    Updated: 2017/03/20 14:14:08 by cbinet           ###   ########.fr        #
+#    Updated: 2017/04/22 13:41:09 by cbinet           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ NAME = lem-in
 SRC_PATH = srcs/
 
 
-SRC_NAME = Lem-in.c ft_leminsolver.c
+SRC_NAME = Lemin.c ft_leminsolver.c ft_lemgetenv.c ft_lemindisplays.c \
+ft_lemgetrooms.c
 
 OBJ_PATH = obj/
 

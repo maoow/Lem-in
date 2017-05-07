@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/15 16:47:32 by cbinet            #+#    #+#             */
-/*   Updated: 2017/03/30 17:16:43 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/04/22 13:54:09 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct		s_lroom
 typedef struct		s_ant
 {
 	size_t			ant;
+	size_t			moves;
 	t_lroom			*room;
 	struct s_ant	*next;
 
@@ -46,8 +47,11 @@ typedef struct		s_lemenv
 	bool			colors;
 	bool			total;
 	bool			dispmap;
+	bool			regdispmap;
+	bool			followall;
 	size_t			moves;
 	size_t			ants;
+	size_t			follow;
 	size_t			roomsnb;
 	t_lroom			*start;
 	t_lroom			*end;
@@ -57,5 +61,17 @@ typedef struct		s_lemenv
 }					t_lemenv;
 
 
+void		ft_freeenv(t_lemenv *env);
+void		ft_dispmove(t_lemenv *env, t_lroom *tmp, t_ant *ant);
+void		ft_dispmap(t_lemenv *env, t_ant *ant);
+void		ft_addneighbors(t_lroom *a, t_lroom *b);
+void		ft_addtube(t_lemenv *env, char *str);
+void		ft_pushroom(t_lemenv *env, t_lroom *room);
+t_lroom	*ft_getroom(char *str, t_lemenv *env, bool tube);
+void		ft_getlemmap(t_lemenv *env);
+bool		ft_setdist(t_lemenv *env, t_lroom *tmp, size_t dist);
+void		ft_antspawn(t_lemenv *env);
+t_lroom		*ft_checkneighboors(t_lemenv *env, t_ant *ant);
+bool		ft_moveant(t_lemenv *env, t_ant *ant);
 void		ft_solvelemmap(t_lemenv *env);
 void		ft_error(char *str, char *str2);
