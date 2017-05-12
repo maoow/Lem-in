@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/02 12:13:09 by cbinet            #+#    #+#             */
-/*   Updated: 2017/04/22 14:57:00 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/05/12 15:39:52 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,10 @@ t_lroom			*ft_getroom(char *str, t_lemenv *env, bool tube)
 		if (str && ft_strcmp("##start", str) && ft_strcmp("##end", str))
 			return (NULL);
 		get_next_line(0, &str);
-		ft_printf("%s\n", str);
+	ft_lemkeepmap(env, str);
 	}
 	if (tube || str[0] == 'L' || ft_strchr(str, '-'))
-		ft_error("Illegal name: ", str);
+		ft_error(env, "Illegal name: ", str);
 	if (!(room = (t_lroom*)malloc(sizeof(t_lroom))))
 		exit(1);
 	ft_getroomcoo(str, room);

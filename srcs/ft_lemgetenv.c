@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/02 10:29:02 by cbinet            #+#    #+#             */
-/*   Updated: 2017/04/22 14:54:33 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/05/12 15:39:24 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,16 +101,16 @@ void		ft_getlemmap(t_lemenv *env)
 	tube = false;
 	if (get_next_line(0, &str) && ft_strlen(str))
 	{
-		ft_printf("%s\n", str);
+	ft_lemkeepmap(env, str);
 		if (ft_isdigit(str[0]))
 			env->ants = ft_atoi(str);
 		free(str);
 	}
 	if (env->ants == 0)
-		ft_error("No ants", "");
+		ft_error(env, "No ants", "");
 	while (get_next_line(0, &str))
 	{
-		ft_printf("%s\n", str);
+	ft_lemkeepmap(env, str);
 		if (ft_strchr(str, '-'))
 		{
 			tube = true;

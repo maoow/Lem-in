@@ -6,18 +6,19 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/18 15:56:29 by cbinet            #+#    #+#             */
-/*   Updated: 2017/04/22 14:52:32 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/05/12 16:18:37 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Lem-in.h"
 
-void		ft_error(char *str, char *str2)
+void		ft_error(t_lemenv *env, char *str, char *str2)
 {
-	char	*tmp;
+//	char	*tmp;
 
-	while (get_next_line(0, &tmp))
-		ft_printf("%s\n", tmp);
+		ft_printf("%s\n", env->strmap);
+	//while (get_next_line(0, &tmp))
+	//	ft_printf("%s\n", tmp);
 	write(2, "\nError\n", 7);
 	write(2, str, ft_strlen(str));
 	write(2, str2, ft_strlen(str2));
@@ -40,6 +41,7 @@ static void		initenv(t_lemenv *env)
 	env->followall = false;
 	env->total = false;
 	env->moves = 0;
+	env->strmap = NULL;
 }
 
 static void		ft_parse(t_lemenv *env, char *str)
@@ -90,13 +92,14 @@ int				main(int ac, char **av)
 	initenv(&env);
 	ft_getlemmap(&env);
 	if (!env.end)
-		ft_error("No ", "end.");
+		ft_error(&env, "No ", "end.");
 	if (ac == 2)
 		ft_parse(&env, av[1]);
 	if (env.start)
 		env.start->ants = env.ants;
 	else
-		ft_error("no start", "");
+		ft_error(&env, "no start", "");
+	ft_printf("\n\n%s", env.strmap);
 	if (env.dispmap)
 		ft_dispmap(&env, NULL);
 	if (env.ants && env.start != env.end)
