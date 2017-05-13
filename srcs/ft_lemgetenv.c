@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/02 10:29:02 by cbinet            #+#    #+#             */
-/*   Updated: 2017/05/12 15:39:24 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/05/13 15:16:47 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void		ft_addtube(t_lemenv *env, char *str)
 	while (j < env->roomsnb && ft_strcmp(env->rooms[j]->name, tmp))
 		j++;
 	if (j < env->roomsnb)
+	{
 		tmproom = env->rooms[j];
 	free(tmp);
 	tmp = ft_strdup(str + i + 1);
@@ -87,9 +88,16 @@ void		ft_addtube(t_lemenv *env, char *str)
 	while (j < env->roomsnb && ft_strcmp(env->rooms[j]->name, tmp))
 		j++;
 	if (j < env->roomsnb)
+	{
 		ft_addneighbors(tmproom, env->rooms[j]);
 	free(tmp);
 	free(str);
+	}
+	else
+		ft_error(env, tmp, " is not a room", false);
+	}
+	else
+		ft_error(env, tmp, " is not a room", false);
 }
 
 void		ft_getlemmap(t_lemenv *env)
@@ -97,17 +105,27 @@ void		ft_getlemmap(t_lemenv *env)
 	char		*str;
 	t_lroom		*room;
 	bool		tube;
+	int			i;
+	int			j;
 
+	i = 0;
+	j = 0;
 	tube = false;
 	if (get_next_line(0, &str) && ft_strlen(str))
 	{
 	ft_lemkeepmap(env, str);
-		if (ft_isdigit(str[0]))
+	while (str[j] == '0')
+		j++;
+	while (str[i] && ft_isdigit(str[i]))
+		i++;
+	str[i] = '\0';
+	if (i - j > 10 || (i - j  == 10 && ft_strcmp("2147483647", str + j) < 0))
+		ft_error(env, "ant quantity up to int max", "", true);
 			env->ants = ft_atoi(str);
 		free(str);
 	}
 	if (env->ants == 0)
-		ft_error(env, "No ants", "");
+		ft_error(env, "No ants", "", true);
 	while (get_next_line(0, &str))
 	{
 	ft_lemkeepmap(env, str);

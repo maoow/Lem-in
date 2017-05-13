@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/02 12:13:09 by cbinet            #+#    #+#             */
-/*   Updated: 2017/05/12 15:39:52 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/05/13 16:13:59 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void			ft_pushroom(t_lemenv *env, t_lroom *room)
 	env->rooms = tmp;
 }
 
-void			ft_getroomcoo(char *str, t_lroom *room)
+void			ft_getroomcoo(t_lemenv *env, char *str, t_lroom *room)
 {
 	size_t		i;
 
@@ -50,7 +50,10 @@ void			ft_getroomcoo(char *str, t_lroom *room)
 		i++;
 	while (str[i] && !ft_isdigit(str[i]))
 		i++;
+	if (str[i])
 	room->coo.y = ft_atoi(str + i);
+	else
+		ft_error(env, "", "", );
 	room->ants = 0;
 }
 
@@ -88,10 +91,10 @@ t_lroom			*ft_getroom(char *str, t_lemenv *env, bool tube)
 	ft_lemkeepmap(env, str);
 	}
 	if (tube || str[0] == 'L' || ft_strchr(str, '-'))
-		ft_error(env, "Illegal name: ", str);
+		ft_error(env, "Illegal name: ", str, false);
 	if (!(room = (t_lroom*)malloc(sizeof(t_lroom))))
-		exit(1);
-	ft_getroomcoo(str, room);
+		ft_error(env, "room allocation fail", "", true);
+	ft_getroomcoo(env, str, room);
 	free(str);
 	return (ft_setroom(env, room, start, end));
 }
