@@ -6,7 +6,7 @@
 #    By: cbinet <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/18 16:00:58 by cbinet            #+#    #+#              #
-#    Updated: 2017/05/12 15:42:03 by cbinet           ###   ########.fr        #
+#    Updated: 2017/05/13 14:26:38 by cbinet           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ OBJ= $(addprefix $(OBJ_PATH), $(OBJ_NAME))
 all: $(NAME)
 
 $(NAME): $(OBJ)
+	make -C includes/ft_printf
 	@gcc $(FLAG) $^ includes/ft_printf/libftprintf.a -o $(NAME) 
 	@echo -n $(NAME)
 	@echo " updated !"
