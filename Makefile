@@ -6,7 +6,7 @@
 #    By: cbinet <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/18 16:00:58 by cbinet            #+#    #+#              #
-#    Updated: 2017/05/13 14:26:38 by cbinet           ###   ########.fr        #
+#    Updated: 2017/05/13 16:16:17 by cbinet           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,9 +44,11 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	gcc -c $(FLAG) -o $@ -c $<
 
 clean :
+	make clean -C includes/ft_printf
 	rm -rf $(OBJ_PATH)
 
 fclean: clean
+	make fclean -C includes/ft_printf
 	rm -f $(NAME)
 
 re: fclean all
