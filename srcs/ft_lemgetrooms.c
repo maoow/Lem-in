@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/02 12:13:09 by cbinet            #+#    #+#             */
-/*   Updated: 2017/05/13 16:13:59 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/06/14 13:47:57 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void			ft_getroomcoo(t_lemenv *env, char *str, t_lroom *room)
 	if (str[i])
 	room->coo.y = ft_atoi(str + i);
 	else
-		ft_error(env, "", "", );
+		ft_error(env, "incorrect room name/coordinates", "", false);
 	room->ants = 0;
 }
 
@@ -91,10 +91,14 @@ t_lroom			*ft_getroom(char *str, t_lemenv *env, bool tube)
 	ft_lemkeepmap(env, str);
 	}
 	if (tube || str[0] == 'L' || ft_strchr(str, '-'))
-		ft_error(env, "Illegal name: ", str, false);
-	if (!(room = (t_lroom*)malloc(sizeof(t_lroom))))
+		ft_error(env, "not a tube: ", str, false);
+	else if (!(room = (t_lroom*)malloc(sizeof(t_lroom))))
 		ft_error(env, "room allocation fail", "", true);
-	ft_getroomcoo(env, str, room);
+	else
+	{
+		ft_getroomcoo(env, str, room);
 	free(str);
 	return (ft_setroom(env, room, start, end));
+	}
+	return(NULL);
 }
