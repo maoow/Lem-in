@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/18 15:56:29 by cbinet            #+#    #+#             */
-/*   Updated: 2017/06/14 13:30:28 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/06/17 12:26:20 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,8 @@ void		ft_error(t_lemenv *env, char *str, char *str2, bool isfatal)
 	write(2, "\n", 1);
 	if (isfatal)
 	{
-	ft_printf("{red}");
 		ft_printf("%s\n", env->strmap);
 	//while (get_next_line(0, &tmp))
-	ft_printf("{eoc}");
 	//	ft_printf("%s\n", tmp);
 		exit(1);
 	}
