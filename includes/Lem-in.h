@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/15 16:47:32 by cbinet            #+#    #+#             */
-/*   Updated: 2017/06/17 12:53:23 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/06/17 13:31:05 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,3 @@ void		ft_solvelemmap(t_lemenv *env);
 void		ft_error(t_lemenv *env, char *str, char *str2, bool isfatal);
 void	ft_lemkeepmap(t_lemenv *env, char *str);
 bool	ft_checkrooms(t_lemenv *env);
-bool	ft_checkuniquename(t_lemenv *env, size_t j);
