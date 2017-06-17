@@ -6,13 +6,13 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/17 12:29:23 by cbinet            #+#    #+#             */
-/*   Updated: 2017/06/17 13:31:34 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/06/17 13:37:41 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Lem-in.h"
 
-bool	ft_checkuniquename(t_lemenv *env, size_t j)
+static bool	ft_checkuniquename(t_lemenv *env, size_t j)
 {
 	size_t		i;
 
@@ -26,7 +26,7 @@ bool	ft_checkuniquename(t_lemenv *env, size_t j)
 	return (true);
 }
 
-bool	ft_checkuniquecoo(t_lemenv *env, size_t j)
+static bool	ft_checkuniquecoo(t_lemenv *env, size_t j)
 {
 	size_t		i;
 
@@ -40,7 +40,7 @@ bool	ft_checkuniquecoo(t_lemenv *env, size_t j)
 	return (true);
 }
 
-bool	ft_checkrooms(t_lemenv *env)
+bool		ft_checkrooms(t_lemenv *env)
 {
 	size_t		i;
 	bool		error;
