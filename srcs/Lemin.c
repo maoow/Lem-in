@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/18 15:56:29 by cbinet            #+#    #+#             */
-/*   Updated: 2017/06/17 12:51:36 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/06/17 13:35:37 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,24 +107,10 @@ int				main(int ac, char **av)
 	ft_printf("\n\n%s", env.strmap);
 	if (env.dispmap)
 		ft_dispmap(&env, NULL);
-	if (env.ants && env.start != env.end)
+		if (ft_checkrooms(&env) && env.ants && env.start != env.end)
 		ft_solvelemmap(&env);
 	ft_freeenv(&env);
 }
-
-//free rooms and ants !!
-
-//free rooms and ants !!
-
-//free rooms and ants !!
-
-//free rooms and ants !!
-
-//free rooms and ants !!
-
-//free rooms and ants !!
-
-//free rooms and ants !!
 
 //free rooms and ants !!
 
