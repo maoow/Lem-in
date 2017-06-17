@@ -29,7 +29,7 @@ program lemin as 42 project.
 
  ###    example of a well formated map:
         25
-        \##start
+        ##start
         1 23 3
         2 16 7
         3 16 3
@@ -37,7 +37,7 @@ program lemin as 42 project.
         5 9 3
         6 1 5
         7 4 8
-        \##end
+        ##end
         0 9 5
         0-4
         0-6
