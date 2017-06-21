@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/02 12:13:09 by cbinet            #+#    #+#             */
-/*   Updated: 2017/06/21 17:13:46 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/06/21 17:21:48 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ t_lroom			*ft_getroom(char *str, t_lemenv *env, bool tube)
 		ft_lemkeepmap(env, str);
 	}
 	if (tube || str[0] == 'L' || ft_strchr(str, '-'))
-		ft_error(env, "not well formated room/tube", str, false);
+		ft_error(env, "not well formated room/tube", str, true);
 	else if (!(room = (t_lroom*)malloc(sizeof(t_lroom))))
 		ft_error(env, "room allocation fail", "", true);
 	else
