@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/17 12:29:23 by cbinet            #+#    #+#             */
-/*   Updated: 2017/06/21 15:54:07 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/06/21 16:10:35 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,9 @@ bool		ft_checkrooms(t_lemenv *env)
 	while (i < env->roomsnb && !error)
 	{
 		if ((error = !ft_checkuniquecoo(env, i)))
-			ft_error(env, "not unique coo", "", false);
-		if (!error)
-			if ((error = !ft_checkuniquename(env, i)))
-				ft_error(env, "not unique name", "", false);
+			ft_error(env, "not unique coo", "", true);
+		else if ((error = !ft_checkuniquename(env, i)))
+				ft_error(env, "not unique name", "", true);
 		i++;
 	}
 	return (!error);
