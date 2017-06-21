@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/17 12:29:23 by cbinet            #+#    #+#             */
-/*   Updated: 2017/06/17 13:37:41 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/06/21 15:54:07 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static bool	ft_checkuniquename(t_lemenv *env, size_t j)
 	size_t		i;
 
 	i = 0;
-	while (env->rooms[i])
+	while (i < env->roomsnb)
 	{
 		if (!ft_strcmp(env->rooms[i]->name, env->rooms[j]->name) && i != j)
 			return (false);
@@ -31,7 +31,7 @@ static bool	ft_checkuniquecoo(t_lemenv *env, size_t j)
 	size_t		i;
 
 	i = 0;
-	while (env->rooms[i])
+	while (i < env->roomsnb)
 	{
 		if (env->rooms[i]->coo.y == env->rooms[j]->coo.y && env->rooms[i]->coo.x == env->rooms[j]->coo.x && i != j)
 			return (false);
@@ -47,12 +47,13 @@ bool		ft_checkrooms(t_lemenv *env)
 
 	error = false;
 	i = 0;
-	while (env->rooms[i] && !error)
+	while (i < env->roomsnb && !error)
 	{
 		if ((error = !ft_checkuniquecoo(env, i)))
 			ft_error(env, "not unique coo", "", false);
-		if ((error = !ft_checkuniquename(env, i)))
-			ft_error(env, "not unique name", "", false);
+		if (!error)
+			if ((error = !ft_checkuniquename(env, i)))
+				ft_error(env, "not unique name", "", false);
 		i++;
 	}
 	return (!error);
