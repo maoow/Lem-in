@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/18 15:56:29 by cbinet            #+#    #+#             */
-/*   Updated: 2017/06/17 13:35:37 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/06/21 16:05:31 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void		ft_error(t_lemenv *env, char *str, char *str2, bool isfatal)
 {
 //	char	*tmp;
 
+		ft_printf("%s\n", env->strmap);
 	ft_printf("{red}");
 	write(2, "\nError\n", 7);
 	ft_printf("{eoc}");
@@ -23,12 +24,7 @@ void		ft_error(t_lemenv *env, char *str, char *str2, bool isfatal)
 	write(2, str2, ft_strlen(str2));
 	write(2, "\n\n", 1);
 	if (isfatal)
-	{
-		ft_printf("%s\n", env->strmap);
-	//while (get_next_line(0, &tmp))
-	//	ft_printf("%s\n", tmp);
 		exit(1);
-	}
 }
 
 static void		initenv(t_lemenv *env)
@@ -107,7 +103,7 @@ int				main(int ac, char **av)
 	ft_printf("\n\n%s", env.strmap);
 	if (env.dispmap)
 		ft_dispmap(&env, NULL);
-		if (ft_checkrooms(&env) && env.ants && env.start != env.end)
+	if (ft_checkrooms(&env) && env.ants && env.start != env.end)
 		ft_solvelemmap(&env);
 	ft_freeenv(&env);
 }
