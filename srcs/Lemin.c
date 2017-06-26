@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/18 15:56:29 by cbinet            #+#    #+#             */
-/*   Updated: 2017/06/21 16:05:31 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/06/26 16:50:32 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,4 @@ int				main(int ac, char **av)
 		ft_solvelemmap(&env);
 	ft_freeenv(&env);
 }
-
-//free rooms and ants !!
 
