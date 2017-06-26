@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/02 12:13:09 by cbinet            #+#    #+#             */
-/*   Updated: 2017/06/21 17:21:48 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/06/26 11:55:20 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,9 @@ t_lroom			*ft_getroom(char *str, t_lemenv *env, bool tube)
 			start = true;
 		else if (!ft_strcmp("##end", str))
 			end = true;
-		free(str);
 		if (str && ft_strcmp("##start", str) && ft_strcmp("##end", str))
 			return (NULL);
+		free(str);
 		get_next_line(0, &str);
 		ft_lemkeepmap(env, str);
 	}
