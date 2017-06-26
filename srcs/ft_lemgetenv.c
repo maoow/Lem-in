@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/02 10:29:02 by cbinet            #+#    #+#             */
-/*   Updated: 2017/06/17 12:53:11 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/06/26 12:22:14 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 void		ft_freeroom(t_lroom **room)
 {
 	free((*room)->name);
-	free((*room)->neighbors);
+	if ((*room)->neighborsnb)
+		free((*room)->neighbors);
 	free(*room);
 	*room = NULL;
 }
@@ -38,6 +39,8 @@ void		ft_freeenv(t_lemenv *env)
 		free(env->antity);
 		env->antity = tmp;
 	}
+	if (env->strmap)
+	free(env->strmap);
 }
 
 void		ft_addneighbors(t_lroom *a, t_lroom *b)
