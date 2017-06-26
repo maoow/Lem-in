@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   filler.h                                           :+:      :+:    :+:   */
+/*   Lem-in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/15 16:47:32 by cbinet            #+#    #+#             */
-/*   Updated: 2017/06/17 13:31:05 by cbinet           ###   ########.fr       */
+/*   Created: 2017/06/26 12:34:16 by cbinet            #+#    #+#             */
+/*   Updated: 2017/06/26 16:31:25 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void		ft_dispmap(t_lemenv *env, t_ant *ant);
 void		ft_addneighbors(t_lroom *a, t_lroom *b);
 void		ft_addtube(t_lemenv *env, char *str);
 void		ft_pushroom(t_lemenv *env, t_lroom *room);
-t_lroom	*ft_getroom(char *str, t_lemenv *env, bool tube);
+t_lroom		*ft_getroom(char *str, t_lemenv *env, bool tube);
 void		ft_getlemmap(t_lemenv *env);
 bool		ft_setdist(t_lemenv *env, t_lroom *tmp, size_t dist);
 void		ft_antspawn(t_lemenv *env);
@@ -76,5 +76,6 @@ t_lroom		*ft_checkneighboors(t_lemenv *env, t_ant *ant);
 bool		ft_moveant(t_lemenv *env, t_ant *ant);
 void		ft_solvelemmap(t_lemenv *env);
 void		ft_error(t_lemenv *env, char *str, char *str2, bool isfatal);
-void	ft_lemkeepmap(t_lemenv *env, char *str);
-bool	ft_checkrooms(t_lemenv *env);
+void		ft_lemkeepmap(t_lemenv *env, char *str);
+bool		ft_checkrooms(t_lemenv *env);
+void		ft_freeants(t_lemenv *env);
