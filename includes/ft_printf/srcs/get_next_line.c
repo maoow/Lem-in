@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/05 12:18:54 by cbinet            #+#    #+#             */
-/*   Updated: 2017/03/15 16:10:23 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/06/26 16:41:21 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int				get_next_line(const int fd, char **line)
 	}
 	tmp = ft_lstgoto(lst, fd + 1);
 	if (ft_strcmp(tmp->content, "") == 0 || tmp->content == NULL)
-		return (read(fd, NULL, BUFF_SIZE));
+		return (0);
 	str = ft_strdup(tmp->content);
 	ft_getline(str, line);
 	str = ft_delfirstline(str);
