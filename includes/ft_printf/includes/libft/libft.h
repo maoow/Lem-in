@@ -68,7 +68,7 @@ char			*ft_uitoa(unsigned int nb);
 char			*ft_ulitoa(unsigned long int nb);
 char			*ft_llitoa(long long int nb);
 char			*ft_itoabase(unsigned int nb, char *base);
-char			*ft_litoabase(long unsigned int nb, char *base);
+char			*ft_litoabase(uintmax_t nb, char *base);
 void			*ft_memalloc(size_t size);
 void			ft_memdel(void **ap);
 void			*ft_memset(void *s, int c, size_t n);
