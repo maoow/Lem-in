@@ -61,7 +61,7 @@ void	ft_bufsstr(t_buf_f *buffer, int *str, char flag)
 
 char	*ft_getsstr(t_buf_f *buffer, va_list ap, char *format)
 {
-	int		*str;
+	wchar_t		*str;
 	char	flag;
 
 	if (!FLAGS.zero)
@@ -72,7 +72,7 @@ char	*ft_getsstr(t_buf_f *buffer, va_list ap, char *format)
 	if (!str)
 		ft_buffit(buffer, ft_strdup("(null)"), 6);
 	else
-		ft_bufsstr(buffer, str, flag);
+		ft_bufsstr(buffer, (int *)str, flag);
 	return (format);
 }
 
