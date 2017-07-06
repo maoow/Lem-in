@@ -53,7 +53,7 @@ void			ft_getroomcoo(t_lemenv *env, char *str, t_lroom *room)
 	if (str[i])
 		room->coo.y = ft_atoi(str + i);
 	else
-		ft_error(env, "incorrect room name/coordinates", "", false);
+		ft_error(env, "incorrect room name/coordinates", "", true);
 	room->ants = 0;
 }
 
