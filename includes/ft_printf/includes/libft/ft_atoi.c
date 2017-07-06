@@ -28,21 +28,13 @@ static int	ft_findfirstavail(char *str)
 
 static bool	isavailable(char *str)
 {
-	int signe;
 	int size;
 
-	signe = 1;
 	size = 0;
 	if (*str == '-' || *str == '+')
-	{
-		if (*str == '-')
-			signe = -1;
 		str++;
-	}
 	while (str[size] >= '0' && str[size] <= '9')
-	{
 		size++;
-	}
 	if (size == 19)
 		if (ft_strncmp(str, "9223372036854775807", 19) > 0)
 			return (false);
