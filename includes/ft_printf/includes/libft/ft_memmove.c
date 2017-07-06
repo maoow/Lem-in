@@ -19,8 +19,8 @@ static void	*ft_rmemcpy(void *dst, const void *src, size_t n)
 
 	str = dst;
 	i = n;
-	str = &str[n];
-	src = &src[n];
+	str = str + n;
+	src = src + n;
 	while (i > 0)
 	{
 		i--;
