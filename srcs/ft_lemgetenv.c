@@ -97,10 +97,10 @@ void		ft_addtube(t_lemenv *env, char *str)
 			free(str);
 		}
 		else
-			ft_error(env, tmp, " is not a room", false);
+			ft_error(env, tmp, " is not a room", true);
 	}
 	else
-		ft_error(env, tmp, " is not a room", false);
+		ft_error(env, tmp, " is not a room", true);
 }
 
 void		ft_getlemmap(t_lemenv *env)
