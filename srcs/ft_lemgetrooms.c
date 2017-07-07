@@ -33,6 +33,7 @@ void			ft_pushroom(t_lemenv *env, t_lroom *room)
 	if (env->rooms)
 		free(env->rooms);
 	env->rooms = tmp;
+	ft_checkrooms(env, i);
 }
 
 void			ft_getroomcoo(t_lemenv *env, char *str, t_lroom *room)
