@@ -43,77 +43,38 @@ void		ft_freeenv(t_lemenv *env)
 	free(env->strmap);
 }
 
-void		ft_addneighbors(t_lroom *a, t_lroom *b)
+static void	ft_readthrough(t_lemenv *env)
 {
-	size_t		i;
-	t_lroom		**tmproom;
+	char	*str;
+	bool		tube;
+	t_lroom		*room;
 
-	i = 0;
-	tmproom = (t_lroom **)malloc(sizeof(t_lroom *) * (a->neighborsnb + 1));
-	while (++i <= a->neighborsnb)
-		tmproom[i - 1] = a->neighbors[i - 1];
-	tmproom[i - 1] = b;
-	if (a->neighborsnb != 0)
-		free(a->neighbors);
-	a->neighbors = tmproom;
-	i = 0;
-	tmproom = (t_lroom **)malloc(sizeof(t_lroom *) * (b->neighborsnb + 1));
-	while (++i <= b->neighborsnb)
-		tmproom[i - 1] = b->neighbors[i - 1];
-	tmproom[i - 1] = a;
-	if (b->neighborsnb != 0)
-		free(b->neighbors);
-	b->neighbors = tmproom;
-	a->neighborsnb++;
-	b->neighborsnb++;
-}
-
-void		ft_addtube(t_lemenv *env, char *str)
-{
-	char			*tmp;
-	t_lroom			*tmproom;
-	size_t			i;
-	size_t			j;
-
-	i = 0;
-	j = 0;
-	while (str[i] && str[i] != '-')
-		i++;
-	tmp = ft_strsub(str, 0, i);
-	while (j < env->roomsnb && ft_strcmp(env->rooms[j]->name, tmp))
-		j++;
-	if (j < env->roomsnb)
+	tube = false;
+	while (get_next_line(0, &str))
 	{
-		tmproom = env->rooms[j];
-		free(tmp);
-		tmp = ft_strdup(str + i + 1);
-		j = 0;
-		while (j < env->roomsnb && ft_strcmp(env->rooms[j]->name, tmp))
-			j++;
-		if (j < env->roomsnb)
+		ft_lemkeepmap(env, str);
+		if (ft_strchr(str, '-') && str[0] != '#')
 		{
-			ft_addneighbors(tmproom, env->rooms[j]);
-			free(tmp);
-			free(str);
+	if (!env->end)
+		ft_error(env, "setting a tube while no end set", "", true);
+	else if (!env->start)
+		ft_error(env, "setting a tube while no start set", "", true);
+			tube = true;
+			ft_addtube(env, str);
 		}
-		else
-			ft_error(env, tmp, " is not a room", true);
+		else if (!tube && (room = ft_getroom(str, env, tube)))
+			ft_pushroom(env, room);
 	}
-	else
-		ft_error(env, tmp, " is not a room", true);
 }
 
 void		ft_getlemmap(t_lemenv *env)
 {
 	char		*str;
-	t_lroom		*room;
-	bool		tube;
 	int			i;
 	int			j;
 
 	i = 0;
 	j = 0;
-	tube = false;
 	if (get_next_line(0, &str) && ft_strlen(str))
 	{
 		ft_lemkeepmap(env, str);
@@ -129,15 +90,5 @@ void		ft_getlemmap(t_lemenv *env)
 	}
 	if (env->ants == 0)
 		ft_error(env, "No ants or negative number of ants", "", true);
-	while (get_next_line(0, &str))
-	{
-		ft_lemkeepmap(env, str);
-		if (ft_strchr(str, '-') && str[0] != '#')
-		{
-			tube = true;
-			ft_addtube(env, str);
-		}
-		else if ((room = ft_getroom(str, env, tube)) && !tube)
-			ft_pushroom(env, room);
-	}
+	ft_readthrough(env);
 }
