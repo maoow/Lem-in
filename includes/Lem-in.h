@@ -77,5 +77,5 @@ bool		ft_moveant(t_lemenv *env, t_ant *ant);
 void		ft_solvelemmap(t_lemenv *env);
 void		ft_error(t_lemenv *env, char *str, char *str2, bool isfatal);
 void		ft_lemkeepmap(t_lemenv *env, char *str);
-bool		ft_checkrooms(t_lemenv *env);
+void		ft_checkrooms(t_lemenv *env, size_t room);
 void		ft_freeants(t_lemenv *env);
