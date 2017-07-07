@@ -14,15 +14,11 @@
 
 void		ft_error(t_lemenv *env, char *str, char *str2, bool isfatal)
 {
-//	char	*tmp;
-
-		ft_printf("\n\n%s\n", env->strmap);
-	ft_printf("{red}");
-	write(2, "\nError\n", 7);
-	ft_printf("{eoc}");
+	ft_printf("\n\n%s\n", env->strmap);
+	write(2, "\033[31m\nError\n\033[0m", 16);
 	write(2, str, ft_strlen(str));
 	write(2, str2, ft_strlen(str2));
-	write(2, "\n\n", 1);
+	write(2, "\n\n", 2);
 	if (isfatal)
 		exit(1);
 }
