@@ -40,20 +40,10 @@ static bool	ft_checkuniquecoo(t_lemenv *env, size_t j)
 	return (true);
 }
 
-bool		ft_checkrooms(t_lemenv *env)
+void	ft_checkrooms(t_lemenv *env, size_t room)
 {
-	size_t		i;
-	bool		error;
-
-	error = false;
-	i = 0;
-	while (i < env->roomsnb && !error)
-	{
-		if ((error = !ft_checkuniquecoo(env, i)))
+		if (!ft_checkuniquecoo(env, room))
 			ft_error(env, "not unique coo", "", true);
-		else if ((error = !ft_checkuniquename(env, i)))
-				ft_error(env, "not unique name", "", true);
-		i++;
-	}
-	return (!error);
+		else if (!ft_checkuniquename(env, room))
+			ft_error(env, "not unique name", "", true);
 }
