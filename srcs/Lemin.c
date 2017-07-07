@@ -16,7 +16,7 @@ void		ft_error(t_lemenv *env, char *str, char *str2, bool isfatal)
 {
 //	char	*tmp;
 
-		ft_printf("%s\n", env->strmap);
+		ft_printf("\n\n%s\n", env->strmap);
 	ft_printf("{red}");
 	write(2, "\nError\n", 7);
 	ft_printf("{eoc}");
@@ -103,7 +103,7 @@ int				main(int ac, char **av)
 	ft_printf("\n\n%s", env.strmap);
 	if (env.dispmap)
 		ft_dispmap(&env, NULL);
-	if (ft_checkrooms(&env) && env.ants && env.start != env.end)
+	if (env.ants && env.start != env.end)
 		ft_solvelemmap(&env);
 	ft_freeenv(&env);
 }
