@@ -18,7 +18,7 @@ SRC_PATH = srcs/
 
 
 SRC_NAME = Lemin.c ft_leminsolver.c ft_lemgetenv.c ft_lemindisplays.c \
-ft_lemgetrooms.c ft_lemkeepmap.c ft_checkrooms.c
+ft_lemgetrooms.c ft_lemkeepmap.c ft_checkrooms.c ft_lemgettubes.c
 
 OBJ_PATH = obj/
 
