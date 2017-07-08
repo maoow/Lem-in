@@ -6,11 +6,11 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/12 15:24:59 by cbinet            #+#    #+#             */
-/*   Updated: 2017/05/13 14:58:06 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/07/08 08:59:11 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Lem-in.h"
+#include "../includes/lemin.h"
 
 void	ft_lemkeepmap(t_lemenv *env, char *str)
 {

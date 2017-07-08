@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Lem-in.c                                           :+:      :+:    :+:   */
+/*   lem-in.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/18 15:56:29 by cbinet            #+#    #+#             */
-/*   Updated: 2017/06/26 16:50:32 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/07/08 08:59:11 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Lem-in.h"
+#include "../includes/lemin.h"
 
-void		ft_error(t_lemenv *env, char *str, char *str2, bool isfatal)
+void			ft_error(t_lemenv *env, char *str, char *str2, bool isfatal)
 {
 	ft_printf("\n\n%s\n", env->strmap);
 	write(2, "\033[31m\nError\n\033[0m", 16);
@@ -59,7 +59,7 @@ static void		ft_parse(t_lemenv *env, char *str)
 		env->follow = ft_atoi(tmp + 1);
 }
 
-void		ft_antspawn(t_lemenv *env)
+void			ft_antspawn(t_lemenv *env)
 {
 	t_ant	*tmp;
 	size_t	ants;
@@ -103,4 +103,3 @@ int				main(int ac, char **av)
 		ft_solvelemmap(&env);
 	ft_freeenv(&env);
 }
-

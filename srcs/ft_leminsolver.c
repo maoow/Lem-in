@@ -6,11 +6,11 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/19 12:50:05 by cbinet            #+#    #+#             */
-/*   Updated: 2017/05/13 14:58:10 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/07/08 08:59:11 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Lem-in.h"
+#include "../includes/lemin.h"
 
 bool		ft_setdist(t_lemenv *env, t_lroom *tmp, size_t dist)
 {
@@ -53,7 +53,7 @@ t_lroom		*ft_checkneighboors(t_lemenv *env, t_ant *ant)
 	{
 		if (ant->room->neighbors[i]->distance <= distance &&
 				(ant->room->neighbors[i]->ants == 0 || ant->room->neighbors[i]
-				== env->end)
+					== env->end)
 				&& ant->room->distance >= (ant->room->neighbors[i]->distance))
 		{
 			distance = ant->room->neighbors[i]->distance;
@@ -84,7 +84,7 @@ bool		ft_moveant(t_lemenv *env, t_ant *ant)
 		}
 		else if (env->follow == ant->ant || env->followall)
 			ft_printf("the ant number {cyan}%3lu{eoc}  {yellow}wait{eoc} in \
-room {red}%5s{eoc}\n", ant->ant, ant->room->name);
+					room {red}%5s{eoc}\n", ant->ant, ant->room->name);
 	}
 	return (false);
 }

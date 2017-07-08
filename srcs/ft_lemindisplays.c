@@ -6,11 +6,11 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/02 10:35:46 by cbinet            #+#    #+#             */
-/*   Updated: 2017/04/22 14:59:38 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/07/08 08:59:11 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Lem-in.h"
+#include "../includes/lemin.h"
 
 char	*g_colors[7] = {
 	"{red}",
@@ -28,11 +28,11 @@ void		ft_dispmove(t_lemenv *env, t_lroom *tmp, t_ant *ant)
 	if (ant->ant == env->follow || env->followall)
 	{
 		ft_printf("the ant number {cyan}%3lu{eoc} {pink}has left{eoc} room \
-				{red}%5s{eoc} for room {green}%5s{eoc} \n", ant->ant, ant->room->name,
-				tmp->name);
+		{red}%5s{eoc} for room {green}%5s{eoc} \n", ant->ant, ant->room->name,
+		tmp->name);
 		if (tmp == env->end)
 			ft_printf("\nthe ant number {cyan}%3lu{eoc} {green} reached{eoc} \
-					room {cyan}%5s{eoc} in {pink}%ld{eoc} moves\n", ant->ant, tmp->name,
+			room {cyan}%5s{eoc} in {pink}%ld{eoc} moves\n", ant->ant, tmp->name,
 					ant->moves);
 	}
 	if (env->follow == 0 && !env->followall)
@@ -40,7 +40,7 @@ void		ft_dispmove(t_lemenv *env, t_lroom *tmp, t_ant *ant)
 		if (env->colors)
 		{
 			ft_printf(g_colors[ant->ant % 7]);
-				ft_printf("L%d{eoc}_%-5s ", ant->ant, tmp->name);
+			ft_printf("L%d{eoc}_%-5s ", ant->ant, tmp->name);
 		}
 		else
 		{
@@ -57,9 +57,6 @@ void		ft_dispantposition(t_lemenv *env, t_ant *ant, size_t i)
 					ant->ant);
 }
 
-/*
-** test
-*/
 void		ft_dispmap(t_lemenv *env, t_ant *ant)
 {
 	size_t	i;

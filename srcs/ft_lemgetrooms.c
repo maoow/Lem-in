@@ -6,11 +6,11 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/02 12:13:09 by cbinet            #+#    #+#             */
-/*   Updated: 2017/06/26 11:55:20 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/07/08 08:59:11 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Lem-in.h"
+#include "../includes/lemin.h"
 
 void			ft_pushroom(t_lemenv *env, t_lroom *room)
 {
@@ -81,10 +81,8 @@ t_lroom			*ft_getroom(char *str, t_lemenv *env, bool tube)
 	end = false;
 	while (str[0] == '#')
 	{
-		if (!ft_strcmp("##start", str))
-			start = true;
-		else if (!ft_strcmp("##end", str))
-			end = true;
+		start = !ft_strcmp("##start", str);
+		end = !ft_strcmp("##end", str);
 		if (str && ft_strcmp("##start", str) && ft_strcmp("##end", str))
 			return (NULL);
 		free(str);
@@ -93,13 +91,11 @@ t_lroom			*ft_getroom(char *str, t_lemenv *env, bool tube)
 	}
 	if (tube || str[0] == 'L' || ft_strchr(str, '-'))
 		ft_error(env, "not well formated room/tube", str, true);
-	else if (!(room = (t_lroom*)malloc(sizeof(t_lroom))))
-		ft_error(env, "room allocation fail", "", true);
-	else
+	else if ((room = (t_lroom*)malloc(sizeof(t_lroom))))
 	{
 		ft_getroomcoo(env, str, room);
 		free(str);
 		return (ft_setroom(env, room, start, end));
 	}
-	return(NULL);
+	return (NULL);
 }

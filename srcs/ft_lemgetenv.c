@@ -6,11 +6,11 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/02 10:29:02 by cbinet            #+#    #+#             */
-/*   Updated: 2017/06/26 12:22:14 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/07/08 08:59:11 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Lem-in.h"
+#include "../includes/lemin.h"
 
 void		ft_freeroom(t_lroom **room)
 {
@@ -40,12 +40,12 @@ void		ft_freeenv(t_lemenv *env)
 		env->antity = tmp;
 	}
 	if (env->strmap)
-	free(env->strmap);
+		free(env->strmap);
 }
 
 static void	ft_readthrough(t_lemenv *env)
 {
-	char	*str;
+	char		*str;
 	bool		tube;
 	t_lroom		*room;
 
@@ -55,10 +55,10 @@ static void	ft_readthrough(t_lemenv *env)
 		ft_lemkeepmap(env, str);
 		if (ft_strchr(str, '-') && str[0] != '#')
 		{
-	if (!env->end)
-		ft_error(env, "setting a tube while no end set", "", true);
-	else if (!env->start)
-		ft_error(env, "setting a tube while no start set", "", true);
+			if (!env->end)
+				ft_error(env, "setting a tube while no end set", "", true);
+			else if (!env->start)
+				ft_error(env, "setting a tube while no start set", "", true);
 			tube = true;
 			ft_addtube(env, str);
 		}
@@ -83,7 +83,7 @@ void		ft_getlemmap(t_lemenv *env)
 		while (str[i] && ft_isdigit(str[i]))
 			i++;
 		str[i] = '\0';
-		if (i - j > 10 || (i - j  == 10 && ft_strcmp("2147483647", str + j) < 0))
+		if (i - j > 10 || (i - j == 10 && ft_strcmp("2147483647", str + j) < 0))
 			ft_error(env, "ant quantity up to int max", "", true);
 		env->ants = ft_atoi(str);
 		free(str);
