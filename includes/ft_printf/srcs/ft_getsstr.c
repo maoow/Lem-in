@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/04 16:39:07 by cbinet            #+#    #+#             */
-/*   Updated: 2017/01/07 23:24:37 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/07/08 08:57:15 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	ft_bufsstr(t_buf_f *buffer, int *str, char flag)
 char	*ft_getsstr(t_buf_f *buffer, va_list ap, char *format)
 {
 	wchar_t		*str;
-	char	flag;
+	char		flag;
 
 	if (!FLAGS.zero)
 		flag = ' ';
