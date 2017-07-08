@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/18 15:56:29 by cbinet            #+#    #+#             */
-/*   Updated: 2017/07/08 09:11:33 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/07/08 09:18:32 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void			ft_error(t_lemenv *env, char *str, char *str2, bool isfatal)
 {
 	if (env->strmap)
 	{
-	ft_printf("\n\n%s\n", env->strmap);
-	free(env->strmap);
-	env->strmap = NULL;
+		ft_printf("\n\n%s\n", env->strmap);
+		free(env->strmap);
+		env->strmap = NULL;
 	}
 	write(2, "\033[31m\nError\n\033[0m", 16);
 	write(2, str, ft_strlen(str));
@@ -103,9 +103,9 @@ int				main(int ac, char **av)
 		ft_error(&env, "no start", "", true);
 	if (env.strmap)
 	{
-	ft_printf("\n\n%s\n", env.strmap);
-	free(env.strmap);
-	env.strmap = NULL;
+		ft_printf("\n\n%s\n", env.strmap);
+		free(env.strmap);
+		env.strmap = NULL;
 	}
 	if (env.dispmap)
 		ft_dispmap(&env, NULL);
