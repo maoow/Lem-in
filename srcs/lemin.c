@@ -6,15 +6,15 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/18 15:56:29 by cbinet            #+#    #+#             */
-/*   Updated: 2017/07/08 09:18:32 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/07/11 15:09:15 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lemin.h"
 
-void			ft_error(t_lemenv *env, char *str, char *str2, bool isfatal)
+void			ft_error(t_lemenv *env, char *str, bool isfatal)
 {
-	if (env->strmap)
+	if (!isfatal && env->strmap)
 	{
 		ft_printf("\n\n%s\n", env->strmap);
 		free(env->strmap);
@@ -22,7 +22,6 @@ void			ft_error(t_lemenv *env, char *str, char *str2, bool isfatal)
 	}
 	write(2, "\033[31m\nError\n\033[0m", 16);
 	write(2, str, ft_strlen(str));
-	write(2, str2, ft_strlen(str2));
 	write(2, "\n\n", 2);
 	if (isfatal)
 		exit(1);
@@ -94,13 +93,13 @@ int				main(int ac, char **av)
 	initenv(&env);
 	ft_getlemmap(&env);
 	if (!env.end)
-		ft_error(&env, "No ", "end.", true);
+		ft_error(&env, "No end", true);
 	if (ac == 2)
 		ft_parse(&env, av[1]);
 	if (env.start)
 		env.start->ants = env.ants;
 	else
-		ft_error(&env, "no start", "", true);
+		ft_error(&env, "no start", true);
 	if (env.strmap)
 	{
 		ft_printf("\n\n%s\n", env.strmap);
