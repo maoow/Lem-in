@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/19 12:50:05 by cbinet            #+#    #+#             */
-/*   Updated: 2017/07/08 08:59:11 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/07/11 15:09:15 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ void		ft_solvelemmap(t_lemenv *env)
 	env->end->distance = 0;
 	ft_setdist(env, tmp, 0);
 	if (!env->endreached)
-		ft_error(env, "no path", "", true);
+		ft_error(env, "no path", true);
 	ft_printf("\n\n");
 	ft_domoves(env);
 	if (env->total)
