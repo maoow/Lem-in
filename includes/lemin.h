@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 09:00:11 by cbinet            #+#    #+#             */
-/*   Updated: 2017/07/08 09:02:12 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/07/11 15:09:15 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void				ft_antspawn(t_lemenv *env);
 t_lroom				*ft_checkneighboors(t_lemenv *env, t_ant *ant);
 bool				ft_moveant(t_lemenv *env, t_ant *ant);
 void				ft_solvelemmap(t_lemenv *env);
-void				ft_error(t_lemenv *env, char *str, char *str2, bool fatal);
+void				ft_error(t_lemenv *env, char *str, bool fatal);
 void				ft_lemkeepmap(t_lemenv *env, char *str);
 void				ft_checkrooms(t_lemenv *env, size_t room);
 void				ft_freeants(t_lemenv *env);
