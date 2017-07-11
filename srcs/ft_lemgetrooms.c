@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/02 12:13:09 by cbinet            #+#    #+#             */
-/*   Updated: 2017/07/11 16:31:37 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/07/11 16:44:52 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,10 @@ void			ft_getroomcoo(t_lemenv *env, char *str, t_lroom *room)
 	while (str[i] && str[i] != ' ')
 		i++;
 	room->name = ft_strsub(str, 0, i);
+	if (str[i])
+		i++;
 	if (str[i] && (ft_isdigit(str[i]) || ((str[i] == '-' || str[i] == '+')
 					&& str[i + 1] && ft_isdigit(str[i + 1]))))
-		i++;
 	room->coo.x = ft_atoi(str + i);
 	while (str[i] && ft_isdigit(str[i]))
 		i++;
