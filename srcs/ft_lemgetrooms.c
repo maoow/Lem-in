@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/02 12:13:09 by cbinet            #+#    #+#             */
-/*   Updated: 2017/07/11 16:17:08 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/07/11 16:31:37 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,16 @@ void			ft_getroomcoo(t_lemenv *env, char *str, t_lroom *room)
 	while (str[i] && str[i] != ' ')
 		i++;
 	room->name = ft_strsub(str, 0, i);
-	if (str[i] && (ft_isdigit(str[i]) || ((str[i] == '-' || str[i] == '+') && str[i + 1] && ft_isdigit(str[i + 1]))))
-	i++;
+	if (str[i] && (ft_isdigit(str[i]) || ((str[i] == '-' || str[i] == '+')
+					&& str[i + 1] && ft_isdigit(str[i + 1]))))
+		i++;
 	room->coo.x = ft_atoi(str + i);
 	while (str[i] && ft_isdigit(str[i]))
 		i++;
 	if (str[i])
-	i++;
-	if (str[i] && (ft_isdigit(str[i]) || ((str[i] == '-' || str[i] == '+') && str[i + 1] && ft_isdigit(str[i + 1]))))
+		i++;
+	if (str[i] && (ft_isdigit(str[i]) || ((str[i] == '-' || str[i] == '+')
+					&& str[i + 1] && ft_isdigit(str[i + 1]))))
 		room->coo.y = ft_atoi(str + i);
 	else
 		ft_error(env, "incorrect room name/coordinates", true);
@@ -79,6 +81,12 @@ t_lroom			*ft_setroom(t_lemenv *env, t_lroom *room, bool start, bool end)
 	return (room);
 }
 
+static bool		ft_checkformat(char *str)
+{
+	return (str[0] != 'L' && (!ft_strchr(str, '-') ||
+				ft_strchr(str, '-') > ft_strchr(str, ' ')));
+}
+
 t_lroom			*ft_getroom(char *str, t_lemenv *env, bool tube)
 {
 	t_lroom		*room;
@@ -97,7 +105,7 @@ t_lroom			*ft_getroom(char *str, t_lemenv *env, bool tube)
 		get_next_line(0, &str);
 		ft_lemkeepmap(env, str);
 	}
-	if (tube || str[0] == 'L' || ft_strchr(str, '-'))
+	if (tube || !ft_checkformat(str))
 		ft_error(env, "not well formated room/tube", true);
 	else if ((room = (t_lroom*)malloc(sizeof(t_lroom))))
 	{
