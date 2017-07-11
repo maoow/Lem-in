@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/02 10:29:02 by cbinet            #+#    #+#             */
-/*   Updated: 2017/07/11 15:10:42 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/07/11 16:19:40 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	ft_readthrough(t_lemenv *env)
 	while (get_next_line(0, &str))
 	{
 		ft_lemkeepmap(env, str);
-		if (ft_strchr(str, '-') && str[0] != '#')
+		if ((ft_strchr(str, '-') && !ft_strchr(str, ' ')) && str[0] != '#')
 		{
 			if (!env->end)
 				ft_error(env, "setting a tube while no end set", true);
