@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/02 10:35:46 by cbinet            #+#    #+#             */
-/*   Updated: 2017/07/08 08:59:11 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/07/11 14:39:22 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ void		ft_dispmove(t_lemenv *env, t_lroom *tmp, t_ant *ant)
 		if (env->colors)
 		{
 			ft_printf(g_colors[ant->ant % 7]);
-			ft_printf("L%d{eoc}_%-5s ", ant->ant, tmp->name);
+			ft_printf("L%d{eoc}-%-5s ", ant->ant, tmp->name);
 		}
 		else
 		{
-			ft_printf("L%d_%-5s ", ant->ant, tmp->name);
+			ft_printf("L%d-%-5s ", ant->ant, tmp->name);
 		}
 	}
 }
