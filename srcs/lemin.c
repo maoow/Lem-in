@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/18 15:56:29 by cbinet            #+#    #+#             */
-/*   Updated: 2017/07/11 15:09:15 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/07/11 16:38:49 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ void			ft_antspawn(t_lemenv *env)
 	t_ant	*tmp;
 	size_t	ants;
 
-	env->antity = (t_ant *)malloc(sizeof(t_ant));
+	if (!(env->antity = (t_ant *)malloc(sizeof(t_ant))))
+		exit(1);
 	tmp = env->antity;
 	tmp->ant = 1;
 	tmp->moves = 0;
@@ -76,7 +77,8 @@ void			ft_antspawn(t_lemenv *env)
 	ants = 1;
 	while (ants < env->ants)
 	{
-		tmp->next = (t_ant *)malloc(sizeof(t_ant));
+		if (!(tmp->next = (t_ant *)malloc(sizeof(t_ant))))
+			exit(1);
 		tmp = tmp->next;
 		tmp->moves = 0;
 		tmp->room = env->start;
