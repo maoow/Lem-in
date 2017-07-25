@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/18 15:56:29 by cbinet            #+#    #+#             */
-/*   Updated: 2017/07/11 16:38:49 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/07/12 13:55:45 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,4 +113,5 @@ int				main(int ac, char **av)
 	if (env.ants && env.start != env.end)
 		ft_solvelemmap(&env);
 	ft_freeenv(&env);
+	return (0);
 }
