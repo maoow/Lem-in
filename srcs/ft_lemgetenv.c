@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/02 10:29:02 by cbinet            #+#    #+#             */
-/*   Updated: 2017/07/11 16:19:40 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/07/12 14:03:59 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	ft_readthrough(t_lemenv *env)
 	t_lroom		*room;
 
 	tube = false;
-	while (get_next_line(0, &str))
+	while (get_next_line(0, &str) && ft_strlen(str))
 	{
 		ft_lemkeepmap(env, str);
 		if ((ft_strchr(str, '-') && !ft_strchr(str, ' ')) && str[0] != '#')
