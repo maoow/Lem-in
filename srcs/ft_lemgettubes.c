@@ -6,7 +6,7 @@
 /*   By: cbinet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 08:36:42 by cbinet            #+#    #+#             */
-/*   Updated: 2017/07/11 16:51:06 by cbinet           ###   ########.fr       */
+/*   Updated: 2017/07/12 13:46:17 by cbinet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ void		ft_addneighbors(t_lroom *a, t_lroom *b)
 	t_lroom		**tmproom;
 
 	i = 0;
-	if (!(tmproom = (t_lroom **)malloc(sizeof(t_lroom *) * (a->neighborsnb + 1))))
+	if (!(tmproom = (t_lroom **)malloc(sizeof(t_lroom *) *
+					(a->neighborsnb + 1))))
 		exit(1);
 	while (++i <= a->neighborsnb)
 		tmproom[i - 1] = a->neighbors[i - 1];
@@ -56,7 +57,8 @@ void		ft_addneighbors(t_lroom *a, t_lroom *b)
 		free(a->neighbors);
 	a->neighbors = tmproom;
 	i = 0;
-	if (!(tmproom = (t_lroom **)malloc(sizeof(t_lroom *) * (b->neighborsnb + 1))))
+	if (!(tmproom = (t_lroom **)malloc(sizeof(t_lroom *) *
+					(b->neighborsnb + 1))))
 		exit(1);
 	while (++i <= b->neighborsnb)
 		tmproom[i - 1] = b->neighbors[i - 1];
